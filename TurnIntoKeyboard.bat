@@ -8,7 +8,7 @@ goto EXIT
 )
 echo.
 echo Abracadabra!
-cd ATmega8u2Code/HexFiles
+cd HexFiles
 echo Attempting to re-flash for an Arduino Uno R1/R2
 @echo on
 batchisp -device at90usb82 -hardware usb -operation erase f memory flash blankcheck loadbuffer "Arduino-keyboard-0.3.hex" program verify start reset 1024
