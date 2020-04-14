@@ -37,7 +37,7 @@ void setup()
   delay(200);  // Waiting to detect the Keyboard Device
 
 // Pressing Win + R keys to bring up the run prompt
-  sendKeys(KEY_R,KEY_LGUI,0x00);
+  sendKeys(KEY_R,0x00,KEY_LGUI);
 //  buf[2] = KEY_LGUI;    // character
 //  buf[3] = KEY_R;    // character
 //  Serial.write(buf, 8); // Send keypress
