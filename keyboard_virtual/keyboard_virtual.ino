@@ -8,7 +8,7 @@ void releaseKey()
   buf[0] = 0;
   buf[2] = 0;
   buf[3] = 0;
-  Serial.write(buf, 8); // Release key  
+  Serial.write(buf, 8); // Release key
 }
 
 void pressKey(int CHARACTER, int MOD_1, int MOD_2)
@@ -37,7 +37,7 @@ void setup()
   delay(200);  // Waiting to detect the Keyboard Device
 
 // Pressing Win + R keys to bring up the run prompt
-  sendKeys(KEY_R,0x00,KEY_LGUI);
+  sendKeys(KEY_LGUI,0x00,KEY_R);
 //  buf[2] = KEY_LGUI;    // character
 //  buf[3] = KEY_R;    // character
 //  Serial.write(buf, 8); // Send keypress
