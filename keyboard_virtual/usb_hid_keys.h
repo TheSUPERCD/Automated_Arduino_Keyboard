@@ -1,14 +1,3 @@
-/**
- * USB HID Keyboard scan codes as per USB spec 1.11
- * plus some additional codes
- * 
- * Created by MightyPork, 2016
- * Public domain
- * 
- * Adapted from:
- * https://source.android.com/devices/input/keyboard-devices.html
- */
-
 #ifndef USB_HID_KEYS
 #define USB_HID_KEYS
 

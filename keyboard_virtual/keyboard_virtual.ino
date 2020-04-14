@@ -1,20 +1,47 @@
-/* Arduino USB HID Keyboard Demo
- * Random Key/Random Delay
- */
 #include "usb_hid_keys.h"
 uint8_t buf[8] = { 
   0 };   /* Keyboard report buffer */
-void setup() 
+
+
+void releaseKey() 
+{
+  buf[0] = 0;
+  buf[2] = 0;
+  buf[3] = 0;
+  Serial.write(buf, 8); // Release key  
+}
+
+void pressKey(int CHARACTER, int MOD_1, int MOD_2)
+{
+  if(MOD_1 != 0x00){
+    buf[0] = MOD_1;
+  }
+  if (MOD_2 != 0x00)
+  {
+    buf[3] = MOD_2;
+  }
+  buf[2] = CHARACTER;
+  Serial.write(buf, 8);
+}
+
+void sendKeys(int CHARACTER, int MOD_1, int MOD_2)
+{
+  pressKey(CHARACTER,MOD_1,MOD_2);
+  releaseKey();
+}
+
+
+void setup()
 {
   Serial.begin(9600);
   delay(200);  // Waiting to detect the Keyboard Device
 
 // Pressing Win + R keys to bring up the run prompt
-  
-  buf[2] = KEY_LGUI;    // character
-  buf[3] = KEY_R;    // character
-  Serial.write(buf, 8); // Send keypress
-  releaseKey();   // RELEASE KEY
+  sendKeys(KEY_R,KEY_LGUI,0x00);
+//  buf[2] = KEY_LGUI;    // character
+//  buf[3] = KEY_R;    // character
+//  Serial.write(buf, 8); // Send keypress
+//  releaseKey();   // RELEASE KEY
 
 
   delay(500); // Waiting for the run prompt to open
@@ -461,12 +488,4 @@ void loop()
 
 
  
-}
-
-void releaseKey() 
-{
-  buf[0] = 0;
-  buf[2] = 0;
-  buf[3] = 0;
-  Serial.write(buf, 8); // Release key  
 }
